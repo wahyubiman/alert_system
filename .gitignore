@@ -1,0 +1,6 @@
+/.env
+/.pytest_cache
+/.vscode
+/a.py
+/alert.log
+/notify_bot.session
