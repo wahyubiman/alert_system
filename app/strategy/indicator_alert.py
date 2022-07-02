@@ -69,10 +69,10 @@ class IndicatorAlert:
                 # check LONG or SHORT signal
                 if (last.break_h.values[0] == 1) & (last.ema_fast.values[0] < last.close.values[0]):
                     result.append(
-                        f'{ohlcv.name} - MSB High Break on ${last.close} @{last.timestamp}')
+                        f'{ohlcv.name} - MSB High Break on ${last.close.values[0]} @{last.timestamp.values[0]}')
                 elif (last.break_l.values[0] == 1) & (last.ema_fast.values[0] > last.close.values[0]):
                     result.append(
-                        f'{ohlcv.name} - MSB Low Break on ${last.close} @{last.timestamp}')
+                        f'{ohlcv.name} - MSB Low Break on ${last.close.values[0]} @{last.timestamp.values[0]}')
             return result
         except Exception as e:
             LOG.exception(e)
