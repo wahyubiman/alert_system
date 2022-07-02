@@ -63,17 +63,18 @@ class IndicatorAlert:
 
         LOG.info('Calculating signal . . .')
         try:
-            result = []
+            result_up = []
+            result_down = []
             for ohlcv in ohlcvs:
                 last = ohlcv[-3:-2]
                 # check LONG or SHORT signal
                 if (last.break_h.values[0] == 1) & (last.ema_fast.values[0] < last.close.values[0]):
-                    result.append(
-                        f'{ohlcv.name} - MSB High Break on ${last.close.values[0]} @{last.timestamp.values[0]}')
+                    result_up.append(
+                        f'{ohlcv.name} - ${last.close.values[0]} on {last.timestamp[-1:].dt.strftime("%d/%m/%Y %H:%M:%S").astype(str)}')
                 elif (last.break_l.values[0] == 1) & (last.ema_fast.values[0] > last.close.values[0]):
-                    result.append(
-                        f'{ohlcv.name} - MSB Low Break on ${last.close.values[0]} @{last.timestamp.values[0]}')
-            return result
+                    result_down.append(
+                        f'{ohlcv.name} - ${last.close.values[0]} on {last.timestamp[-1:].dt.strftime("%d/%m/%Y %H:%M:%S").astype(str)}')
+            return [result_up, result_down]
         except Exception as e:
             LOG.exception(e)
 

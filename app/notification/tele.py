@@ -16,7 +16,7 @@ async def send_notif(signals):
     Return:
         None  """
     LOG.info('Send notification via Telegram Bot')
-    msg_header = """----- Signal RSI cross above 42.5 or below 57.5 -----
+    msg_header = """----- Market Structure Break Alert 1H -----
 
 """
     msg = """"""
@@ -25,8 +25,15 @@ async def send_notif(signals):
     await bot.start(bot_token=os.getenv('TELE_BOT_TOKEN'))
     entity = await bot.get_entity(TG_CHANNEL_NAME)
     msg += msg_header
-    for signal in signals:
-        msg += "-> {} \n".format(signal)
+    for i in signals:
+        if i == 0:
+            msg += f"""MSB High Break :
+"""
+        elif i == 1:
+            msg += f"""MSB Low Break :
+"""
+        for signal in signals[i]:
+            msg += "-> {} \n".format(signal)
     msg += f"""
 >>> {str(pd.to_datetime(time.time(), unit='s').tz_localize('UTC').tz_convert('Asia/Jakarta').strftime('%m/%d/%Y %H:%M:%S'))}"""
     await bot.send_message(entity, msg)
