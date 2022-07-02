@@ -70,10 +70,10 @@ class IndicatorAlert:
                 # check LONG or SHORT signal
                 if (last.break_h.values[0] == 1) & (last.ema_fast.values[0] < last.close.values[0]):
                     result_up.append(
-                        f'{ohlcv.name} - ${last.close.values[0]} on {last.timestamp[-1:].dt.strftime("%d/%m/%Y %H:%M:%S").astype(str)}')
+                        f'{ohlcv.name} - ${last.close.values[0]} on {last.timestamp[-1:].dt.strftime("%d/%m/%Y %H:%M:%S").astype(str).values[0]}')
                 elif (last.break_l.values[0] == 1) & (last.ema_fast.values[0] > last.close.values[0]):
                     result_down.append(
-                        f'{ohlcv.name} - ${last.close.values[0]} on {last.timestamp[-1:].dt.strftime("%d/%m/%Y %H:%M:%S").astype(str)}')
+                        f'{ohlcv.name} - ${last.close.values[0]} on {last.timestamp[-1:].dt.strftime("%d/%m/%Y %H:%M:%S").astype(str).values[0]}')
             return [result_up, result_down]
         except Exception as e:
             LOG.exception(e)
