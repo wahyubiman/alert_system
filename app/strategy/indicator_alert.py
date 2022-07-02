@@ -53,7 +53,6 @@ class IndicatorAlert:
             result(list): list pair name with format ['pairName - $lasPrice - rsi - LONG/SHORT']"""
 
         LOG.info('Calculating signal . . .')
-        # TODO add jika ema_fast di atas ema_slow dan rsi cross 42.5 berikan sinyal long juga sebaliknya
         try:
             result = []
             for ohlcv in ohlcvs:
