@@ -11,3 +11,4 @@ TG_CHANNEL_NAME = 'https://t.me/kokangyuhu'  # use invite link
 RSI = 14
 EMA_FAST = 34
 EMA_SLOW = 168
+ARGREL = 5
