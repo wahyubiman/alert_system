@@ -16,7 +16,7 @@ def scanner_1h():
         'binance', market_type='future').data('1h', '/USDT')
     calc = IndicatorAlert().calculate(ohlcvs)
     LOG.info('Done scanning')
-    if len(calc) != 0:
+    if len(calc[0]) != 0 | len(calc[1]) != 0:
         # send telegram notification if has signal
         asyncio.run(send_notif(calc))
 
