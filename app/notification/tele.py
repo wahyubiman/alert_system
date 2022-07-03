@@ -25,15 +25,14 @@ async def send_notif(signals):
     await bot.start(bot_token=os.getenv('TELE_BOT_TOKEN'))
     entity = await bot.get_entity(TG_CHANNEL_NAME)
     msg += msg_header
-    for i in signals:
-        if i == 0:
-            msg += f"""MSB High Break :
+    msg += f"""MSB High Break :
 """
-        elif i == 1:
-            msg += f"""MSB Low Break :
+    for signal in signals[0]:
+        msg += "-> {} \n".format(signal)
+    msg += f"""MSB Low Break :
 """
-        for signal in signals[i]:
-            msg += "-> {} \n".format(signal)
+    for signal in signals[1]:
+        msg += "-> {} \n".format(signal)
     msg += f"""
 >>> {str(pd.to_datetime(time.time(), unit='s').tz_localize('UTC').tz_convert('Asia/Jakarta').strftime('%m/%d/%Y %H:%M:%S'))}"""
     await bot.send_message(entity, msg)
