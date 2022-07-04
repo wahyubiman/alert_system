@@ -25,12 +25,12 @@ async def send_notif(signals):
     await bot.start(bot_token=os.getenv('TELE_BOT_TOKEN'))
     entity = await bot.get_entity(TG_CHANNEL_NAME)
     msg += msg_header
-    if signals[0] != 0:
+    if len(signals[0]) != 0:
         msg += f"""MSB High Break :
 """
         for signal in signals[0]:
             msg += "-> {} \n".format(signal)
-    if signals[0] != 0:
+    if len(signals[1]) != 0:
         msg += f"""MSB Low Break :
 """
         for signal in signals[1]:
